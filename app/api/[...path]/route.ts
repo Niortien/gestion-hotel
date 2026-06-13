@@ -12,6 +12,7 @@ async function proxy(req: NextRequest, ctx: Context): Promise<NextResponse> {
   const { path } = await ctx.params
   const target = `${BACKEND}/${path.join('/')}${req.nextUrl.search}`
 
+  
   // Forward only safe headers — strip host to avoid conflicts
   const forwardHeaders = new Headers()
   forwardHeaders.set('Content-Type', 'application/json')
