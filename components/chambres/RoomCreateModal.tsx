@@ -14,12 +14,12 @@ import toast from 'react-hot-toast'
 import { X } from 'lucide-react'
 
 const schema = z.object({
-  number:   z.string().min(1, 'Requis'),
-  floor:    z.coerce.number().min(1, 'Min. étage 1'),
-  type:     z.enum(['standard', 'deluxe', 'suite']),
-  price:    z.coerce.number().min(0, 'Prix invalide'),
+  number: z.string().trim().min(1, 'Requis'),
+  floor: z.string().trim().min(1, 'Min. étage 1').refine((value) => /^\d+$/.test(value), 'Min. étage 1'),
+  type: z.enum(['standard', 'deluxe', 'suite']),
+  price: z.string().trim().min(1, 'Prix invalide').refine((value) => /^\d+(\.\d+)?$/.test(value), 'Prix invalide'),
   currency: z.enum(['FCFA', 'EUR', 'USD']),
-  status:   z.enum(['libre', 'occupee', 'travaux', 'nettoyage']).optional(),
+  status: z.enum(['libre', 'occupee', 'travaux', 'nettoyage']).optional(),
 })
 
 type FormData = z.infer<typeof schema>
@@ -34,7 +34,7 @@ export function RoomCreateModal({ onClose }: Props) {
 
   const { control, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(schema),
-    defaultValues: { type: 'standard', status: 'libre', floor: 1, price: 25000, currency: 'FCFA' as const },
+    defaultValues: { number: '', type: 'standard', status: 'libre', floor: '1', price: '25000', currency: 'FCFA' as const },
   })
 
   useEffect(() => {
@@ -52,9 +52,9 @@ export function RoomCreateModal({ onClose }: Props) {
     try {
       await createRoom.mutateAsync({
         number:   data.number,
-        floor:    data.floor,
+        floor:    Number(data.floor),
         type:     data.type,
-        price:    data.price,
+        price:    Number(data.price),
         currency: data.currency,
         status:   data.status,
       })

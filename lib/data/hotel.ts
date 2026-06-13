@@ -15,44 +15,44 @@ import type {
 // ─── Services ────────────────────────────────────────────────────────────────
 
 export const SERVICES: Service[] = [
-  { id: 's1', name: 'Petit-déjeuner', nameEn: 'Breakfast', category: 'restauration', unitPrice: 24, unit: 'personne', icon: 'coffee' },
-  { id: 's2', name: 'Dîner gastronomique', nameEn: 'Gourmet dinner', category: 'restauration', unitPrice: 85, unit: 'personne', icon: 'utensils' },
-  { id: 's3', name: 'Room service', nameEn: 'Room service', category: 'restauration', unitPrice: 35, unit: 'commande', icon: 'concierge-bell' },
-  { id: 's4', name: 'Soin spa 60 min', nameEn: 'Spa treatment 60 min', category: 'spa', unitPrice: 120, unit: 'séance', icon: 'sparkles' },
-  { id: 's5', name: 'Massage relaxant', nameEn: 'Relaxing massage', category: 'spa', unitPrice: 95, unit: 'séance', icon: 'heart' },
-  { id: 's6', name: 'Transfert aéroport', nameEn: 'Airport transfer', category: 'transport', unitPrice: 75, unit: 'trajet', icon: 'car' },
-  { id: 's7', name: 'Location véhicule', nameEn: 'Car rental', category: 'transport', unitPrice: 150, unit: 'jour', icon: 'car' },
-  { id: 's8', name: 'Pressing', nameEn: 'Dry cleaning', category: 'divers', unitPrice: 30, unit: 'pièce', icon: 'shirt' },
-  { id: 's9', name: 'Mini-bar', nameEn: 'Mini-bar', category: 'restauration', unitPrice: 18, unit: 'article', icon: 'wine' },
-  { id: 's10', name: 'Accès piscine privée', nameEn: 'Private pool access', category: 'spa', unitPrice: 60, unit: 'jour', icon: 'waves' },
+  { id: 's1', name: 'Petit-déjeuner', nameEn: 'Breakfast', category: 'restauration', unitPrice: 24, currency: 'FCFA', unit: 'personne', icon: 'coffee' },
+  { id: 's2', name: 'Dîner gastronomique', nameEn: 'Gourmet dinner', category: 'restauration', unitPrice: 85, currency: 'FCFA', unit: 'personne', icon: 'utensils' },
+  { id: 's3', name: 'Room service', nameEn: 'Room service', category: 'restauration', unitPrice: 35, currency: 'FCFA', unit: 'commande', icon: 'concierge-bell' },
+  { id: 's4', name: 'Soin spa 60 min', nameEn: 'Spa treatment 60 min', category: 'spa', unitPrice: 120, currency: 'FCFA', unit: 'séance', icon: 'sparkles' },
+  { id: 's5', name: 'Massage relaxant', nameEn: 'Relaxing massage', category: 'spa', unitPrice: 95, currency: 'FCFA', unit: 'séance', icon: 'heart' },
+  { id: 's6', name: 'Transfert aéroport', nameEn: 'Airport transfer', category: 'transport', unitPrice: 75, currency: 'FCFA', unit: 'trajet', icon: 'car' },
+  { id: 's7', name: 'Location véhicule', nameEn: 'Car rental', category: 'transport', unitPrice: 150, currency: 'FCFA', unit: 'jour', icon: 'car' },
+  { id: 's8', name: 'Pressing', nameEn: 'Dry cleaning', category: 'divers', unitPrice: 30, currency: 'FCFA', unit: 'pièce', icon: 'shirt' },
+  { id: 's9', name: 'Mini-bar', nameEn: 'Mini-bar', category: 'restauration', unitPrice: 18, currency: 'FCFA', unit: 'article', icon: 'wine' },
+  { id: 's10', name: 'Accès piscine privée', nameEn: 'Private pool access', category: 'spa', unitPrice: 60, currency: 'FCFA', unit: 'jour', icon: 'waves' },
 ]
 
 // ─── Rooms ────────────────────────────────────────────────────────────────────
 
 export const ROOMS: Room[] = [
   // Étage 1 — Standards
-  { id: 'r101', number: '101', floor: 1, type: 'standard', status: 'occupee', capacity: 2, basePrice: 120, amenities: ['wifi', 'climatisation', 'tv', 'coffre-fort'], description: 'Chambre standard avec vue sur cour', descriptionEn: 'Standard room with courtyard view', surface: 22, view: 'cour', currentGuestId: 'g1', currentReservationId: 'res1' },
-  { id: 'r102', number: '102', floor: 1, type: 'standard', status: 'libre', capacity: 2, basePrice: 120, amenities: ['wifi', 'climatisation', 'tv'], description: 'Chambre standard calme', descriptionEn: 'Quiet standard room', surface: 22, view: 'cour', lastCleaned: '2026-05-23T08:30:00' },
-  { id: 'r103', number: '103', floor: 1, type: 'standard', status: 'nettoyage', capacity: 2, basePrice: 120, amenities: ['wifi', 'climatisation', 'tv', 'coffre-fort'], description: 'Chambre standard vue jardin', descriptionEn: 'Standard room garden view', surface: 24, view: 'jardin' },
-  { id: 'r104', number: '104', floor: 1, type: 'deluxe', status: 'libre', capacity: 2, basePrice: 180, amenities: ['wifi', 'climatisation', 'tv', 'baignoire', 'minibar'], description: 'Chambre deluxe vue jardin', descriptionEn: 'Deluxe room garden view', surface: 32, view: 'jardin', lastCleaned: '2026-05-23T09:00:00' },
-  { id: 'r105', number: '105', floor: 1, type: 'standard', status: 'travaux', capacity: 1, basePrice: 100, amenities: ['wifi', 'tv'], description: 'Chambre simple en rénovation', descriptionEn: 'Single room under renovation', surface: 18, view: 'rue' },
+  { id: 'r101', number: '101', floor: 1, type: 'standard', status: 'occupee', capacity: 2, basePrice: 120, currency: 'FCFA', amenities: ['wifi', 'climatisation', 'tv', 'coffre-fort'], description: 'Chambre standard avec vue sur cour', descriptionEn: 'Standard room with courtyard view', surface: 22, view: 'cour', currentGuestId: 'g1', currentReservationId: 'res1' },
+  { id: 'r102', number: '102', floor: 1, type: 'standard', status: 'libre', capacity: 2, basePrice: 120, currency: 'FCFA', amenities: ['wifi', 'climatisation', 'tv'], description: 'Chambre standard calme', descriptionEn: 'Quiet standard room', surface: 22, view: 'cour', lastCleaned: '2026-05-23T08:30:00' },
+  { id: 'r103', number: '103', floor: 1, type: 'standard', status: 'nettoyage', capacity: 2, basePrice: 120, currency: 'FCFA', amenities: ['wifi', 'climatisation', 'tv', 'coffre-fort'], description: 'Chambre standard vue jardin', descriptionEn: 'Standard room garden view', surface: 24, view: 'jardin' },
+  { id: 'r104', number: '104', floor: 1, type: 'deluxe', status: 'libre', capacity: 2, basePrice: 180, currency: 'FCFA', amenities: ['wifi', 'climatisation', 'tv', 'baignoire', 'minibar'], description: 'Chambre deluxe vue jardin', descriptionEn: 'Deluxe room garden view', surface: 32, view: 'jardin', lastCleaned: '2026-05-23T09:00:00' },
+  { id: 'r105', number: '105', floor: 1, type: 'standard', status: 'travaux', capacity: 1, basePrice: 100, currency: 'FCFA', amenities: ['wifi', 'tv'], description: 'Chambre simple en rénovation', descriptionEn: 'Single room under renovation', surface: 18, view: 'rue' },
 
   // Étage 2 — Deluxe
-  { id: 'r201', number: '201', floor: 2, type: 'deluxe', status: 'occupee', capacity: 2, basePrice: 195, amenities: ['wifi', 'climatisation', 'tv', 'baignoire', 'minibar', 'coffre-fort'], description: 'Deluxe avec balcon vue panoramique', descriptionEn: 'Deluxe with panoramic balcony', surface: 35, view: 'panoramique', currentGuestId: 'g2', currentReservationId: 'res2' },
-  { id: 'r202', number: '202', floor: 2, type: 'deluxe', status: 'libre', capacity: 2, basePrice: 185, amenities: ['wifi', 'climatisation', 'tv', 'baignoire', 'minibar'], description: 'Chambre deluxe élégante', descriptionEn: 'Elegant deluxe room', surface: 33, view: 'jardin', lastCleaned: '2026-05-23T07:45:00' },
-  { id: 'r203', number: '203', floor: 2, type: 'deluxe', status: 'nettoyage', capacity: 2, basePrice: 190, amenities: ['wifi', 'climatisation', 'tv', 'baignoire', 'minibar', 'coffre-fort'], description: 'Deluxe avec coin salon', descriptionEn: 'Deluxe with lounge area', surface: 38, view: 'jardin' },
-  { id: 'r204', number: '204', floor: 2, type: 'deluxe', status: 'occupee', capacity: 3, basePrice: 200, amenities: ['wifi', 'climatisation', 'tv', 'douche-italienne', 'minibar', 'coffre-fort'], description: 'Deluxe familiale', descriptionEn: 'Family deluxe room', surface: 40, view: 'rue', currentGuestId: 'g3', currentReservationId: 'res3' },
-  { id: 'r205', number: '205', floor: 2, type: 'suite', status: 'libre', capacity: 2, basePrice: 350, amenities: ['wifi', 'climatisation', 'tv', 'baignoire-jacuzzi', 'minibar', 'coffre-fort', 'salon-privé'], description: 'Suite junior avec jacuzzi', descriptionEn: 'Junior suite with jacuzzi', surface: 55, view: 'panoramique', lastCleaned: '2026-05-23T08:00:00' },
+  { id: 'r201', number: '201', floor: 2, type: 'deluxe', status: 'occupee', capacity: 2, basePrice: 195, currency: 'FCFA', amenities: ['wifi', 'climatisation', 'tv', 'baignoire', 'minibar', 'coffre-fort'], description: 'Deluxe avec balcon vue panoramique', descriptionEn: 'Deluxe with panoramic balcony', surface: 35, view: 'panoramique', currentGuestId: 'g2', currentReservationId: 'res2' },
+  { id: 'r202', number: '202', floor: 2, type: 'deluxe', status: 'libre', capacity: 2, basePrice: 185, currency: 'FCFA', amenities: ['wifi', 'climatisation', 'tv', 'baignoire', 'minibar'], description: 'Chambre deluxe élégante', descriptionEn: 'Elegant deluxe room', surface: 33, view: 'jardin', lastCleaned: '2026-05-23T07:45:00' },
+  { id: 'r203', number: '203', floor: 2, type: 'deluxe', status: 'nettoyage', capacity: 2, basePrice: 190, currency: 'FCFA', amenities: ['wifi', 'climatisation', 'tv', 'baignoire', 'minibar', 'coffre-fort'], description: 'Deluxe avec coin salon', descriptionEn: 'Deluxe with lounge area', surface: 38, view: 'jardin' },
+  { id: 'r204', number: '204', floor: 2, type: 'deluxe', status: 'occupee', capacity: 3, basePrice: 200, currency: 'FCFA', amenities: ['wifi', 'climatisation', 'tv', 'douche-italienne', 'minibar', 'coffre-fort'], description: 'Deluxe familiale', descriptionEn: 'Family deluxe room', surface: 40, view: 'rue', currentGuestId: 'g3', currentReservationId: 'res3' },
+  { id: 'r205', number: '205', floor: 2, type: 'suite', status: 'libre', capacity: 2, basePrice: 350, currency: 'FCFA', amenities: ['wifi', 'climatisation', 'tv', 'baignoire-jacuzzi', 'minibar', 'coffre-fort', 'salon-privé'], description: 'Suite junior avec jacuzzi', descriptionEn: 'Junior suite with jacuzzi', surface: 55, view: 'panoramique', lastCleaned: '2026-05-23T08:00:00' },
 
   // Étage 3 — Suites
-  { id: 'r301', number: '301', floor: 3, type: 'suite', status: 'occupee', capacity: 4, basePrice: 420, amenities: ['wifi', 'climatisation', 'tv', 'baignoire-jacuzzi', 'minibar', 'coffre-fort', 'salon', 'terrasse'], description: 'Suite prestige avec terrasse', descriptionEn: 'Prestige suite with terrace', surface: 75, view: 'panoramique', currentGuestId: 'g4', currentReservationId: 'res4' },
-  { id: 'r302', number: '302', floor: 3, type: 'suite', status: 'libre', capacity: 2, basePrice: 390, amenities: ['wifi', 'climatisation', 'tv', 'baignoire', 'minibar', 'coffre-fort', 'salon'], description: 'Suite classic avec salon séparé', descriptionEn: 'Classic suite with separate lounge', surface: 65, view: 'jardin', lastCleaned: '2026-05-22T14:00:00' },
-  { id: 'r303', number: '303', floor: 3, type: 'prestige', status: 'occupee', capacity: 2, basePrice: 650, amenities: ['wifi', 'climatisation', 'tv', 'baignoire-marble', 'minibar-premium', 'coffre-fort', 'salon', 'terrasse-privée', 'butler'], description: 'Suite Royale — expérience ultime', descriptionEn: 'Royal Suite — ultimate experience', surface: 110, view: 'panoramique', currentGuestId: 'g5', currentReservationId: 'res5' },
-  { id: 'r304', number: '304', floor: 3, type: 'prestige', status: 'nettoyage', capacity: 4, basePrice: 580, amenities: ['wifi', 'climatisation', 'tv', 'baignoire', 'minibar-premium', 'coffre-fort', 'salon', 'cuisine-équipée'], description: 'Suite appartement grand luxe', descriptionEn: 'Grand luxury apartment suite', surface: 95, view: 'panoramique' },
+  { id: 'r301', number: '301', floor: 3, type: 'suite', status: 'occupee', capacity: 4, basePrice: 420, currency: 'FCFA', amenities: ['wifi', 'climatisation', 'tv', 'baignoire-jacuzzi', 'minibar', 'coffre-fort', 'salon', 'terrasse'], description: 'Suite prestige avec terrasse', descriptionEn: 'Prestige suite with terrace', surface: 75, view: 'panoramique', currentGuestId: 'g4', currentReservationId: 'res4' },
+  { id: 'r302', number: '302', floor: 3, type: 'suite', status: 'libre', capacity: 2, basePrice: 390, currency: 'FCFA', amenities: ['wifi', 'climatisation', 'tv', 'baignoire', 'minibar', 'coffre-fort', 'salon'], description: 'Suite classic avec salon séparé', descriptionEn: 'Classic suite with separate lounge', surface: 65, view: 'jardin', lastCleaned: '2026-05-22T14:00:00' },
+  { id: 'r303', number: '303', floor: 3, type: 'prestige', status: 'occupee', capacity: 2, basePrice: 650, currency: 'FCFA', amenities: ['wifi', 'climatisation', 'tv', 'baignoire-marble', 'minibar-premium', 'coffre-fort', 'salon', 'terrasse-privée', 'butler'], description: 'Suite Royale — expérience ultime', descriptionEn: 'Royal Suite — ultimate experience', surface: 110, view: 'panoramique', currentGuestId: 'g5', currentReservationId: 'res5' },
+  { id: 'r304', number: '304', floor: 3, type: 'prestige', status: 'nettoyage', capacity: 4, basePrice: 580, currency: 'FCFA', amenities: ['wifi', 'climatisation', 'tv', 'baignoire', 'minibar-premium', 'coffre-fort', 'salon', 'cuisine-équipée'], description: 'Suite appartement grand luxe', descriptionEn: 'Grand luxury apartment suite', surface: 95, view: 'panoramique' },
 
   // Étage 4 — Prestige
-  { id: 'r401', number: '401', floor: 4, type: 'prestige', status: 'libre', capacity: 2, basePrice: 750, amenities: ['wifi', 'climatisation', 'tv', 'baignoire-marble', 'minibar-premium', 'coffre-fort', 'salon', 'terrasse-privée', 'butler', 'piscine-privée'], description: 'Suite Penthouse — vue 360°', descriptionEn: 'Penthouse Suite — 360° view', surface: 150, view: 'panoramique', lastCleaned: '2026-05-22T16:00:00' },
-  { id: 'r402', number: '402', floor: 4, type: 'prestige', status: 'occupee', capacity: 2, basePrice: 680, amenities: ['wifi', 'climatisation', 'tv', 'baignoire-marble', 'minibar-premium', 'coffre-fort', 'salon', 'terrasse'], description: 'Suite Grand Palais', descriptionEn: 'Grand Palace Suite', surface: 120, view: 'panoramique', currentGuestId: 'g6', currentReservationId: 'res6' },
+  { id: 'r401', number: '401', floor: 4, type: 'prestige', status: 'libre', capacity: 2, basePrice: 750, currency: 'FCFA', amenities: ['wifi', 'climatisation', 'tv', 'baignoire-marble', 'minibar-premium', 'coffre-fort', 'salon', 'terrasse-privée', 'butler', 'piscine-privée'], description: 'Suite Penthouse — vue 360°', descriptionEn: 'Penthouse Suite — 360° view', surface: 150, view: 'panoramique', lastCleaned: '2026-05-22T16:00:00' },
+  { id: 'r402', number: '402', floor: 4, type: 'prestige', status: 'occupee', capacity: 2, basePrice: 680, currency: 'FCFA', amenities: ['wifi', 'climatisation', 'tv', 'baignoire-marble', 'minibar-premium', 'coffre-fort', 'salon', 'terrasse'], description: 'Suite Grand Palais', descriptionEn: 'Grand Palace Suite', surface: 120, view: 'panoramique', currentGuestId: 'g6', currentReservationId: 'res6' },
 ]
 
 // ─── Guests ───────────────────────────────────────────────────────────────────
@@ -73,7 +73,7 @@ export const GUESTS: Guest[] = [
 export const RESERVATIONS: Reservation[] = [
   {
     id: 'res1', guestId: 'g1', roomId: 'r101', checkIn: '2026-05-20', checkOut: '2026-05-25',
-    status: 'confirmee', adults: 2, children: 0, totalAmount: 600, paidAmount: 600,
+    status: 'confirmee', adults: 2, children: 0, totalAmount: 600, currency: 'FCFA', paidAmount: 600,
     notes: 'Arrivée tardive prévue 22h', createdAt: '2026-04-10', confirmedAt: '2026-04-10',
     source: 'direct', invoiceNumber: 'FAC-2026-0042',
     services: [
@@ -83,7 +83,7 @@ export const RESERVATIONS: Reservation[] = [
   },
   {
     id: 'res2', guestId: 'g2', roomId: 'r201', checkIn: '2026-05-22', checkOut: '2026-05-26',
-    status: 'confirmee', adults: 1, children: 0, totalAmount: 1560, paidAmount: 780,
+    status: 'confirmee', adults: 1, children: 0, totalAmount: 1560, currency: 'FCFA', paidAmount: 780,
     notes: 'Facture au nom de Corporate Solutions Ltd', createdAt: '2026-05-01', confirmedAt: '2026-05-01',
     source: 'telephone', invoiceNumber: 'FAC-2026-0043',
     services: [
@@ -94,14 +94,14 @@ export const RESERVATIONS: Reservation[] = [
   },
   {
     id: 'res3', guestId: 'g3', roomId: 'r204', checkIn: '2026-05-21', checkOut: '2026-05-24',
-    status: 'confirmee', adults: 2, children: 1, totalAmount: 810, paidAmount: 810,
+    status: 'confirmee', adults: 2, children: 1, totalAmount: 810, currency: 'FCFA', paidAmount: 810,
     notes: '', createdAt: '2026-05-10', confirmedAt: '2026-05-10',
     source: 'booking', invoiceNumber: 'FAC-2026-0044',
     services: [{ service: SERVICES[0], quantity: 6, date: '2026-05-22' }],
   },
   {
     id: 'res4', guestId: 'g4', roomId: 'r301', checkIn: '2026-05-18', checkOut: '2026-05-28',
-    status: 'confirmee', adults: 2, children: 0, totalAmount: 6800, paidAmount: 6800,
+    status: 'confirmee', adults: 2, children: 0, totalAmount: 6800, currency: 'FCFA', paidAmount: 6800,
     notes: 'Suite premium — accueil VIP, champagne Dom Pérignon, butler H24',
     createdAt: '2026-04-01', confirmedAt: '2026-04-01', source: 'direct',
     invoiceNumber: 'FAC-2026-0040',
@@ -114,7 +114,7 @@ export const RESERVATIONS: Reservation[] = [
   },
   {
     id: 'res5', guestId: 'g5', roomId: 'r303', checkIn: '2026-05-23', checkOut: '2026-05-27',
-    status: 'confirmee', adults: 2, children: 0, totalAmount: 3400, paidAmount: 1700,
+    status: 'confirmee', adults: 2, children: 0, totalAmount: 3400, currency: 'FCFA', paidAmount: 1700,
     notes: 'Bouquet de bienvenue — roses blanches', createdAt: '2026-05-05', confirmedAt: '2026-05-05',
     source: 'direct', invoiceNumber: 'FAC-2026-0045',
     services: [
@@ -124,20 +124,20 @@ export const RESERVATIONS: Reservation[] = [
   },
   {
     id: 'res6', guestId: 'g6', roomId: 'r402', checkIn: '2026-05-22', checkOut: '2026-05-25',
-    status: 'confirmee', adults: 1, children: 0, totalAmount: 2040, paidAmount: 2040,
+    status: 'confirmee', adults: 1, children: 0, totalAmount: 2040, currency: 'FCFA', paidAmount: 2040,
     notes: 'Late check-in après 23h', createdAt: '2026-05-15', confirmedAt: '2026-05-15',
     source: 'expedia', invoiceNumber: 'FAC-2026-0046',
     services: [{ service: SERVICES[5], quantity: 1, date: '2026-05-22' }],
   },
   {
     id: 'res7', guestId: 'g7', roomId: 'r102', checkIn: '2026-05-25', checkOut: '2026-05-27',
-    status: 'en_attente', adults: 1, children: 0, totalAmount: 240, paidAmount: 0,
+    status: 'en_attente', adults: 1, children: 0, totalAmount: 240, currency: 'FCFA', paidAmount: 0,
     notes: '', createdAt: '2026-05-20', source: 'booking',
     services: [],
   },
   {
     id: 'res8', guestId: 'g8', roomId: 'r205', checkIn: '2026-05-26', checkOut: '2026-05-31',
-    status: 'en_attente', adults: 2, children: 0, totalAmount: 2100, paidAmount: 1050,
+    status: 'en_attente', adults: 2, children: 0, totalAmount: 2100, currency: 'FCFA', paidAmount: 1050,
     notes: 'Thé vert japonais à disposition en permanence', createdAt: '2026-05-18',
     source: 'direct', services: [
       { service: SERVICES[3], quantity: 2, date: '2026-05-27' },
@@ -146,14 +146,14 @@ export const RESERVATIONS: Reservation[] = [
   },
   {
     id: 'res9', guestId: 'g2', roomId: 'r202', checkIn: '2026-04-10', checkOut: '2026-04-14',
-    status: 'terminee', adults: 1, children: 0, totalAmount: 760, paidAmount: 760,
+    status: 'terminee', adults: 1, children: 0, totalAmount: 760, currency: 'FCFA', paidAmount: 760,
     notes: '', createdAt: '2026-03-20', confirmedAt: '2026-03-20',
     source: 'telephone', invoiceNumber: 'FAC-2026-0031',
     services: [{ service: SERVICES[0], quantity: 4, date: '2026-04-11' }],
   },
   {
     id: 'res10', guestId: 'g1', roomId: 'r103', checkIn: '2026-03-15', checkOut: '2026-03-18',
-    status: 'terminee', adults: 2, children: 0, totalAmount: 360, paidAmount: 360,
+    status: 'terminee', adults: 2, children: 0, totalAmount: 360, currency: 'FCFA', paidAmount: 360,
     notes: '', createdAt: '2026-03-01', confirmedAt: '2026-03-01',
     source: 'booking', invoiceNumber: 'FAC-2026-0025',
     services: [],
