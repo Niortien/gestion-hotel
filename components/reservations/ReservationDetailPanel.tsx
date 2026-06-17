@@ -11,7 +11,7 @@ import { formatDate, getNights, formatAmount } from '@/lib/utils/format'
 import type { Reservation, ReservationStatus } from '@/types/hotel'
 import {
   User, BedDouble, Calendar, ConciergeBell, CreditCard,
-  Mail, Phone, Pencil, Check, X, Trash2,
+  Mail, Phone, Pencil, Check, X, Trash2, MessageCircle,
 } from 'lucide-react'
 import toast from 'react-hot-toast'
 
@@ -97,6 +97,27 @@ export function ReservationDetailPanel({ reservationId, snapshot, onClose }: Pro
   const guest = res.guest
   const room  = res.room
   const nights = getNights(res.checkIn, res.checkOut)
+
+  const buildWhatsAppUrl = (phone: string) => {
+    const clean = phone.replace(/\D/g, '')
+    const intl = clean.startsWith('225') ? `+${clean}` : `+225${clean.replace(/^0/, '')}`
+    const checkInFmt  = new Date(res.checkIn).toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })
+    const checkOutFmt = new Date(res.checkOut).toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })
+    const roomLabel   = room ? `Chambre ${room.number} (${room.type})` : `Chambre #${res.roomId}`
+    const msg = [
+      `🏨 *Hôtel PMS*`,
+      `Bonjour ${guest?.firstName ?? ''},`,
+      ``,
+      `✅ *Réservation confirmée*`,
+      `🛏 ${roomLabel}`,
+      `📅 Arrivée : ${checkInFmt}`,
+      `📅 Départ : ${checkOutFmt}`,
+      `💰 Total : ${formatAmount(res.totalAmount, res.currency)}`,
+      ``,
+      `Merci de votre confiance. 🙏`,
+    ].join('\n')
+    return `https://wa.me/${intl}?text=${encodeURIComponent(msg)}`
+  }
 
   const handleStatusApply = async () => {
     try {
@@ -247,6 +268,25 @@ export function ReservationDetailPanel({ reservationId, snapshot, onClose }: Pro
               {row(<Mail size={12} />, 'Email', guest.email)}
               {guest.phone && row(<Phone size={12} />, locale === 'fr' ? 'Téléphone' : 'Phone', guest.phone)}
             </div>
+            {guest.phone && (
+              <a
+                href={buildWhatsAppUrl(guest.phone)}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  marginTop: 10, display: 'inline-flex', alignItems: 'center', gap: 7,
+                  padding: '8px 14px', borderRadius: 9,
+                  background: '#25D366', color: '#FFFFFF',
+                  fontSize: 12, fontWeight: 600, textDecoration: 'none',
+                  transition: 'opacity 0.15s',
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.85' }}
+                onMouseLeave={(e) => { e.currentTarget.style.opacity = '1' }}
+              >
+                <MessageCircle size={14} strokeWidth={1.5} />
+                {locale === 'fr' ? 'Envoyer le reçu WhatsApp' : 'Send receipt via WhatsApp'}
+              </a>
+            )}
           </div>
         ) : (
           <div style={{ fontSize: 12, color: '#5C6068', fontStyle: 'italic' }}>

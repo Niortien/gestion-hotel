@@ -13,7 +13,8 @@ import { GuestList } from './GuestList'
 import { CheckInForm } from './CheckInForm'
 import { useAnimatedSearch } from '@/lib/hooks/useAnimatedSearch'
 import type { Guest } from '@/types/hotel'
-import { UserPlus, Users, Crown } from 'lucide-react'
+import { UserPlus, Users, Crown, Medal, Trophy } from 'lucide-react'
+import { formatAmount } from '@/lib/utils/format'
 
 export function ClientsView() {
   const pageRef = useRef<HTMLDivElement>(null)
@@ -52,6 +53,18 @@ export function ClientsView() {
   const baseList = query ? results : allGuests
   const displayed = filterVip ? baseList.filter((g) => g.vip) : baseList
   const vipCount = allGuests.filter((g) => g.vip).length
+
+  const loyalClients = [...allGuests]
+    .filter((g) => (g.totalStays ?? 0) >= 1)
+    .sort((a, b) => (b.totalStays ?? 0) - (a.totalStays ?? 0))
+    .slice(0, 5)
+
+  const rankIcon = (i: number) => {
+    if (i === 0) return '🥇'
+    if (i === 1) return '🥈'
+    if (i === 2) return '🥉'
+    return `#${i + 1}`
+  }
 
   return (
     <div ref={pageRef} style={{ maxWidth: 960, margin: '0 auto' }}>
@@ -195,6 +208,41 @@ export function ClientsView() {
           </div>
         ))}
       </div>
+
+      {/* Loyal clients */}
+      {loyalClients.length >= 2 && (
+        <div data-animate style={{ background: '#FFFFFF', border: '1px solid #EDE8DF', borderRadius: 20, padding: '20px 24px', marginBottom: 24 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+            <Trophy size={16} strokeWidth={1.25} style={{ color: '#B5924C' }} />
+            <h2 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: 22, fontWeight: 400, color: '#3D1F0F' }}>
+              {locale === 'fr' ? 'Clients les plus fidèles' : 'Most loyal guests'}
+            </h2>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+            {/* Table header */}
+            <div style={{ display: 'grid', gridTemplateColumns: '36px 1fr 90px 130px', padding: '6px 12px', borderBottom: '1px solid #EDE8DF' }}>
+              {['', locale === 'fr' ? 'Nom' : 'Name', locale === 'fr' ? 'Séjours' : 'Stays', locale === 'fr' ? 'Total dépensé' : 'Total spent'].map((h) => (
+                <div key={h} style={{ fontSize: 10, fontWeight: 700, color: '#5C6068', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</div>
+              ))}
+            </div>
+            {loyalClients.map((g, i) => (
+              <div key={g.id} style={{ display: 'grid', gridTemplateColumns: '36px 1fr 90px 130px', padding: '10px 12px', borderBottom: i < loyalClients.length - 1 ? '1px solid #EDE8DF' : 'none', alignItems: 'center' }}>
+                <div style={{ fontSize: 16, textAlign: 'center' }}>{rankIcon(i)}</div>
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: '#3D1F0F' }}>{g.firstName} {g.lastName}</div>
+                  <div style={{ fontSize: 11, color: '#5C6068' }}>{g.email}</div>
+                </div>
+                <div style={{ fontFamily: 'var(--font-dm-mono), monospace', fontSize: 13, fontWeight: 700, color: '#B5924C' }}>
+                  {g.totalStays ?? 0}
+                </div>
+                <div style={{ fontFamily: 'var(--font-dm-mono), monospace', fontSize: 12, color: '#3D1F0F' }}>
+                  {formatAmount(g.totalSpent ?? 0, 'FCFA')}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Search */}
       <div data-animate style={{ position: 'relative', maxWidth: 480, marginBottom: 20 }}>

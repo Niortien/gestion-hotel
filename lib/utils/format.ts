@@ -55,8 +55,9 @@ export function formatPrice(amount: number, currency = 'FCFA', _locale = 'fr-FR'
 }
 
 export function formatPriceCompact(amount: number): string {
-  if (amount >= 1000) return `${(amount / 1000).toFixed(1)}k €`
-  return `${amount} €`
+  if (amount >= 1_000_000) return `${(amount / 1_000_000).toFixed(1)}M FCFA`
+  if (amount >= 1000) return `${(amount / 1000).toFixed(0)}k FCFA`
+  return `${amount} FCFA`
 }
 
 export function getNights(checkIn: string, checkOut: string): number {

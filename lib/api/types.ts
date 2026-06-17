@@ -221,3 +221,90 @@ export interface ApiDailyRevenue {
   services: number
   total: number
 }
+
+// ─── Dépenses ─────────────────────────────────────────────────────────────────
+
+export type ApiDepenseCategorie =
+  | 'FOURNITURES'
+  | 'ALIMENTATION'
+  | 'ENTRETIEN'
+  | 'SALAIRES'
+  | 'SERVICES'
+  | 'EQUIPEMENT'
+  | 'AUTRE'
+
+export interface ApiDepense {
+  id:        string
+  libelle:   string
+  montant:   number | string
+  categorie: ApiDepenseCategorie
+  date:      string
+  note:      string | null
+  createdBy: string | null
+  createdAt: string
+  updatedAt: string
+}
+
+export interface CreateDepenseDto {
+  libelle:   string
+  montant:   number
+  categorie?: ApiDepenseCategorie
+  date?:     string
+  note?:     string
+  createdBy?: string
+}
+
+export type UpdateDepenseDto = Partial<CreateDepenseDto>
+
+export interface DepenseListParams {
+  page?:      number
+  limit?:     number
+  categorie?: ApiDepenseCategorie
+  from?:      string
+  to?:        string
+  q?:         string
+  sortBy?:    'date' | 'montant' | 'libelle' | 'categorie' | 'createdAt'
+  order?:     'asc' | 'desc'
+}
+
+// ─── Rapports financiers ───────────────────────────────────────────────────────
+
+export interface ApiRevenueRange {
+  revenus:           number
+  depenses:          number
+  benefice:          number
+  reservationsCount: number
+  depensesCount:     number
+}
+
+export interface ApiRapportMensuelJour {
+  date:     string
+  revenus:  number
+  depenses: number
+  net:      number
+}
+
+export interface ApiRapportMensuel {
+  mois:              string
+  totalRevenus:      number
+  totalDepenses:     number
+  beneficeNet:       number
+  reservationsCount: number
+  depensesCount:     number
+  parJour:           ApiRapportMensuelJour[]
+}
+
+export interface ApiResumePeriode {
+  period:      { from: string; to: string }
+  reservations: {
+    count:     number
+    revenus:   number
+    parStatut: Record<string, number>
+  }
+  events:       ApiDashboardEvent[]
+  depenses:     { count: number; total: number }
+  beneficeNet:  number
+  chambres:     { libre: number; occupee: number; nettoyage: number; travaux: number }
+  checkIns:     number
+  checkOuts:    number
+}

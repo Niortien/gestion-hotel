@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "additionalDirectories": [
+      "d:\\projet\\projet-backend\\gestion-hotel-backend\\prisma"
+    ],
+    "allow": [
+      "Bash(npx prisma *)"
+    ]
+  }
+}
