@@ -11,6 +11,7 @@ export function useDashboardStats() {
   return useQuery({
     queryKey: ['dashboard', 'stats'],
     queryFn:  getDashboardStats,
+    staleTime: 0,
     refetchInterval: 60_000,
   })
 }
