@@ -142,7 +142,7 @@ export function ReservationForm({ onClose }: Props) {
           firstName: data.newFirstName!,
           lastName:  data.newLastName!,
           phone:     data.newPhone!,
-          email:     data.newEmail || '',
+          ...(data.newEmail ? { email: data.newEmail } : {}),
         })
         resolvedGuestId = newGuest.id
       }
