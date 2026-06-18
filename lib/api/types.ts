@@ -126,7 +126,7 @@ export interface CreateGuestDto {
   firstName: string
   lastName: string
   phone: string
-  email: string
+  email?: string
   roomId?: number
 }
 export type UpdateGuestDto = Partial<CreateGuestDto>
