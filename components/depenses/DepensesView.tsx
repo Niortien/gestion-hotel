@@ -39,7 +39,7 @@ const CAT_COLORS: Record<ApiDepenseCategorie, string> = {
 
 const schema = z.object({
   libelle:   z.string().min(2, 'Libellé requis (min. 2 car.)'),
-  montant:   z.number({ invalid_type_error: 'Montant invalide' }).positive('Le montant doit être positif'),
+  montant:   z.number({ error: 'Montant invalide' }).positive('Le montant doit être positif'),
   categorie: z.enum(['FOURNITURES', 'ALIMENTATION', 'ENTRETIEN', 'SALAIRES', 'SERVICES', 'EQUIPEMENT', 'AUTRE']),
   date:      z.string().optional(),
   note:      z.string().optional(),
