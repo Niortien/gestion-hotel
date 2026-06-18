@@ -18,7 +18,7 @@ import { useAnimatedSearch } from '@/lib/hooks/useAnimatedSearch'
 import type { Reservation, ReservationStatus } from '@/types/hotel'
 import { Plus, CalendarRange, List } from 'lucide-react'
 
-const STATUSES: ReservationStatus[] = ['confirmee', 'en_attente', 'terminee', 'annulee', 'no_show']
+const STATUSES: ReservationStatus[] = ['confirmee', 'checkin', 'terminee', 'annulee', 'no_show']
 
 export function ReservationsView() {
   const pageRef = useRef<HTMLDivElement>(null)

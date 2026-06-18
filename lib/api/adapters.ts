@@ -43,15 +43,15 @@ const RES_STATUS_MAP: Record<ApiResStatus, ReservationStatus> = {
   CHECKIN:   'checkin',
   CHECKOUT:  'terminee',
   NOSHOW:    'no_show',
+  ANNULEE:   'annulee',
 }
 
 const RES_STATUS_REVERSE: Record<ReservationStatus, ApiResStatus> = {
-  confirmee:  'CONFIRMEE',
-  checkin:    'CHECKIN',
-  en_attente: 'CONFIRMEE',
-  terminee:   'CHECKOUT',
-  annulee:    'CHECKOUT',
-  no_show:    'NOSHOW',
+  confirmee: 'CONFIRMEE',
+  checkin:   'CHECKIN',
+  terminee:  'CHECKOUT',
+  annulee:   'ANNULEE',
+  no_show:   'NOSHOW',
 }
 
 export function adaptRoom(r: ApiRoom): Room {
@@ -84,7 +84,7 @@ export function adaptGuest(g: ApiGuest): Guest {
     id:          g.id,
     firstName:   g.firstName,
     lastName:    g.lastName,
-    email:       g.email,
+    email:       g.email ?? '',
     phone:       g.phone,
     nationality: '',
     idNumber:    '',
@@ -127,7 +127,7 @@ export function adaptReservation(r: ApiReservation): Reservation {
     room:        r.room   ? adaptRoom(r.room)      : undefined,
     checkIn:     r.checkIn,
     checkOut:    r.checkOut,
-    status:      RES_STATUS_MAP[r.status] ?? 'en_attente',
+    status:      RES_STATUS_MAP[r.status] ?? 'confirmee',
     services:    (r.services ?? []).flatMap((s) => {
       if (!s.service) return []
       return [{

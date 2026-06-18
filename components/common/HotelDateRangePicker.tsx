@@ -138,7 +138,7 @@ export function HotelDateRangePicker({ value, onChange, label }: Props) {
                 return (
                   <button
                     key={pLabel}
-                    onClick={() => { const r = getRange(); setPending(r); apply(r) }}
+                    onClick={() => { setPending(getRange()) }}
                     style={{
                       width: '100%', textAlign: 'left', padding: '8px 16px',
                       background: isSelected ? '#B5924C18' : 'transparent',

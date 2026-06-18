@@ -12,7 +12,6 @@ const STATUS_CONFIG: Record<Status, { label: string; labelEn: string; color: str
   travaux:    { label: 'Travaux',    labelEn: 'Maintenance', color: '#C9A84C', bg: '#C9A84C20' },
   confirmee:  { label: 'Confirmée',  labelEn: 'Confirmed',   color: '#1A6B4A', bg: '#1A6B4A18' },
   checkin:    { label: 'Arrivée',    labelEn: 'Checked in',  color: '#1558A0', bg: '#1558A018' },
-  en_attente: { label: 'En attente', labelEn: 'Pending',     color: '#C9A84C', bg: '#C9A84C20' },
   annulee:    { label: 'Annulée',    labelEn: 'Cancelled',   color: '#8B1A2F', bg: '#8B1A2F18' },
   terminee:   { label: 'Terminée',   labelEn: 'Completed',   color: '#5C6068', bg: '#5C606818' },
   no_show:    { label: 'Absent',     labelEn: 'No show',     color: '#3D1F0F', bg: '#3D1F0F12' },

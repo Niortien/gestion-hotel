@@ -21,6 +21,7 @@ const API_STATUSES: { value: ReservationStatus; labelFr: string; labelEn: string
   { value: 'checkin',   labelFr: 'Arrivée',    labelEn: 'Checked in',  color: '#1558A0' },
   { value: 'terminee',  labelFr: 'Départ',     labelEn: 'Checked out', color: '#5C6068' },
   { value: 'no_show',   labelFr: 'Absent',     labelEn: 'No-show',     color: '#3D1F0F' },
+  { value: 'annulee',   labelFr: 'Annulée',    labelEn: 'Cancelled',   color: '#6B1A1A' },
 ]
 
 interface Props {
@@ -100,7 +101,8 @@ export function ReservationDetailPanel({ reservationId, snapshot, onClose }: Pro
 
   const buildWhatsAppUrl = (phone: string) => {
     const clean = phone.replace(/\D/g, '')
-    const intl = clean.startsWith('225') ? `+${clean}` : `+225${clean.replace(/^0/, '')}`
+    const withoutPrefix = clean.replace(/^(00225|225)/, '').replace(/^0/, '')
+    const intl = `+225${withoutPrefix}`
     const checkInFmt  = new Date(res.checkIn).toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })
     const checkOutFmt = new Date(res.checkOut).toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })
     const roomLabel   = room ? `Chambre ${room.number} (${room.type})` : `Chambre #${res.roomId}`

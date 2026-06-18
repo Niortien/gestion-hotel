@@ -3,7 +3,7 @@
 export type RoomType = 'standard' | 'deluxe' | 'suite' | 'prestige'
 export type RoomStatus = 'libre' | 'occupee' | 'nettoyage' | 'travaux'
 export type Currency = 'EUR' | 'FCFA' | 'USD'
-export type ReservationStatus = 'confirmee' | 'checkin' | 'en_attente' | 'annulee' | 'terminee' | 'no_show'
+export type ReservationStatus = 'confirmee' | 'checkin' | 'annulee' | 'terminee' | 'no_show'
 export type ServiceCategory = 'restauration' | 'spa' | 'transport' | 'divers'
 export type AlertType = 'checkin' | 'checkout' | 'nettoyage' | 'maintenance' | 'paiement' | 'vip'
 export type EventType = 'checkin' | 'checkout' | 'service' | 'paiement' | 'alerte' | 'note'

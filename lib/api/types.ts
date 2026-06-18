@@ -3,7 +3,7 @@
 
 export type ApiRoomType    = 'SINGLE' | 'DOUBLE' | 'SUITE'
 export type ApiRoomStatus  = 'LIBRE' | 'OCCUPEE' | 'TRAVAUX' | 'NETTOYAGE'
-export type ApiResStatus   = 'CONFIRMEE' | 'CHECKIN' | 'CHECKOUT' | 'NOSHOW'
+export type ApiResStatus   = 'CONFIRMEE' | 'CHECKIN' | 'CHECKOUT' | 'NOSHOW' | 'ANNULEE'
 export type ApiCurrency    = 'EUR' | 'FCFA' | 'USD'
 export type ApiStayType    = 'NUIT' | 'PASSAGE'
 
@@ -302,6 +302,7 @@ export interface ApiResumePeriode {
     parStatut: Record<string, number>
   }
   events:       ApiDashboardEvent[]
+  eventsTotal?: number
   depenses:     { count: number; total: number }
   beneficeNet:  number
   chambres:     { libre: number; occupee: number; nettoyage: number; travaux: number }

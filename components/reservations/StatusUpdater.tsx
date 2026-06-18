@@ -10,7 +10,7 @@ import type { Reservation, ReservationStatus } from '@/types/hotel'
 import toast from 'react-hot-toast'
 
 const STATUSES: ReservationStatus[] = [
-  'confirmee', 'en_attente', 'terminee', 'annulee', 'no_show',
+  'confirmee', 'checkin', 'terminee', 'annulee', 'no_show',
 ]
 
 interface Props {

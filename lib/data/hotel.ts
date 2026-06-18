@@ -131,13 +131,13 @@ export const RESERVATIONS: Reservation[] = [
   },
   {
     id: 'res7', guestId: 'g7', roomId: 'r102', checkIn: '2026-05-25', checkOut: '2026-05-27',
-    status: 'en_attente', adults: 1, children: 0, totalAmount: 240, currency: 'FCFA', paidAmount: 0,
+    status: 'confirmee', adults: 1, children: 0, totalAmount: 240, currency: 'FCFA', paidAmount: 0,
     notes: '', createdAt: '2026-05-20', source: 'booking',
     services: [],
   },
   {
     id: 'res8', guestId: 'g8', roomId: 'r205', checkIn: '2026-05-26', checkOut: '2026-05-31',
-    status: 'en_attente', adults: 2, children: 0, totalAmount: 2100, currency: 'FCFA', paidAmount: 1050,
+    status: 'confirmee', adults: 2, children: 0, totalAmount: 2100, currency: 'FCFA', paidAmount: 1050,
     notes: 'Thé vert japonais à disposition en permanence', createdAt: '2026-05-18',
     source: 'direct', services: [
       { service: SERVICES[3], quantity: 2, date: '2026-05-27' },

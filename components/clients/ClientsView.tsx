@@ -13,7 +13,7 @@ import { GuestList } from './GuestList'
 import { CheckInForm } from './CheckInForm'
 import { useAnimatedSearch } from '@/lib/hooks/useAnimatedSearch'
 import type { Guest } from '@/types/hotel'
-import { UserPlus, Users, Crown, Medal, Trophy } from 'lucide-react'
+import { UserPlus, Users, Crown, Trophy } from 'lucide-react'
 import { formatAmount } from '@/lib/utils/format'
 
 export function ClientsView() {
