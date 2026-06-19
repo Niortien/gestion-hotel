@@ -1,7 +1,7 @@
 // components/reservations/ReservationsView.tsx
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import { SimpleModal } from '@/components/common/ui'
 import { Drawer } from '@/components/common/ui'
 import { initGSAP } from '@/lib/animations/gsap.config'
@@ -15,8 +15,10 @@ import { ReservationTimeline } from './ReservationTimeline'
 import { ReservationForm } from './ReservationForm'
 import { ReservationDetailPanel } from './ReservationDetailPanel'
 import { useAnimatedSearch } from '@/lib/hooks/useAnimatedSearch'
+import { HotelDateRangePicker } from '@/components/common/HotelDateRangePicker'
+import type { HotelDateRange } from '@/components/common/HotelDateRangePicker'
 import type { Reservation, ReservationStatus } from '@/types/hotel'
-import { Plus, CalendarRange, List } from 'lucide-react'
+import { Plus, CalendarRange, List, X } from 'lucide-react'
 
 const STATUSES: ReservationStatus[] = ['confirmee', 'checkin', 'terminee', 'annulee', 'no_show']
 
@@ -28,6 +30,13 @@ export function ReservationsView() {
   const [viewMode, setViewMode] = useState<'list' | 'timeline'>('list')
   const [newOpen, setNewOpen] = useState(false)
   const [selected, setSelected] = useState<Reservation | null>(null)
+  const [dateRange, setDateRange] = useState<HotelDateRange | null>(null)
+
+  // Date filter: include reservations that overlap the selected period
+  const dateFiltered = useMemo(() => {
+    if (!dateRange) return allRes
+    return allRes.filter((r) => r.checkIn <= dateRange.to && r.checkOut >= dateRange.from)
+  }, [allRes, dateRange])
 
   const {
     query,
@@ -39,7 +48,7 @@ export function ReservationsView() {
     handleBlur,
     handleChange,
   } = useAnimatedSearch<Reservation>(
-    allRes,
+    dateFiltered,
     (r, q) => {
       const lq = q.toLowerCase()
       return r.id.toLowerCase().includes(lq) || r.roomId.includes(lq) || r.guestId.includes(lq)
@@ -51,7 +60,7 @@ export function ReservationsView() {
     if (pageRef.current) animatePageIn(pageRef.current)
   }, [])
 
-  const base = query ? results : allRes
+  const base = query ? results : dateFiltered
   const displayed = filterStatus ? base.filter((r) => r.status === filterStatus) : base
 
   return (
@@ -95,7 +104,7 @@ export function ReservationsView() {
       </div>
 
       {/* Status filter chips */}
-      <div data-animate style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 20 }}>
+      <div data-animate style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 14 }}>
         <button
           onClick={() => setFilterStatus(null)}
           style={{
@@ -110,10 +119,10 @@ export function ReservationsView() {
             cursor: 'pointer',
           }}
         >
-          {locale === 'fr' ? 'Toutes' : 'All'} ({allRes.length})
+          {locale === 'fr' ? 'Toutes' : 'All'} ({dateFiltered.length})
         </button>
         {STATUSES.map((s) => {
-          const cnt = allRes.filter((r) => r.status === s).length
+          const cnt = dateFiltered.filter((r) => r.status === s).length
           if (cnt === 0) return null
           return (
             <button
@@ -137,6 +146,34 @@ export function ReservationsView() {
             </button>
           )
         })}
+      </div>
+
+      {/* Date range filter */}
+      <div data-animate style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14, flexWrap: 'wrap' }}>
+        <HotelDateRangePicker
+          value={dateRange ?? undefined}
+          onChange={setDateRange}
+          label={locale === 'fr' ? 'Filtrer par période' : 'Filter by period'}
+        />
+        {dateRange && (
+          <>
+            <button
+              onClick={() => setDateRange(null)}
+              style={{
+                display: 'flex', alignItems: 'center', gap: 5,
+                padding: '5px 12px', borderRadius: 99,
+                border: '1px solid #EDE8DF', background: '#FFFFFF',
+                color: '#5C6068', fontSize: 12, cursor: 'pointer',
+              }}
+            >
+              <X size={11} strokeWidth={2} />
+              {locale === 'fr' ? 'Effacer' : 'Clear'}
+            </button>
+            <span style={{ fontSize: 12, color: '#5C6068' }}>
+              {dateFiltered.length} {locale === 'fr' ? `réservation${dateFiltered.length !== 1 ? 's' : ''}` : `reservation${dateFiltered.length !== 1 ? 's' : ''}`}
+            </span>
+          </>
+        )}
       </div>
 
       {/* Search */}

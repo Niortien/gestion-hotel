@@ -14,6 +14,7 @@ import {
   Settings,
   LogOut,
   Activity,
+  DoorOpen,
 } from 'lucide-react'
 import { gsap } from '@/lib/animations/gsap.config'
 import { initGSAP } from '@/lib/animations/gsap.config'
@@ -22,14 +23,15 @@ import { useHotelStore } from '@/store/hotel-store'
 import { useAuthStore } from '@/store/auth-store'
 
 const NAV_ITEMS = [
-  { href: '/dashboard',    Icon: LayoutDashboard, labelFr: 'Tableau de bord', labelEn: 'Dashboard' },
-  { href: '/resume',       Icon: Activity,        labelFr: 'Résumé',          labelEn: 'Daily Summary' },
-  { href: '/chambres',     Icon: BedDouble,       labelFr: 'Chambres',        labelEn: 'Rooms' },
-  { href: '/clients',      Icon: Users,           labelFr: 'Clients',         labelEn: 'Guests' },
-  { href: '/reservations', Icon: CalendarDays,    labelFr: 'Réservations',    labelEn: 'Reservations' },
-  { href: '/depenses',     Icon: Receipt,         labelFr: 'Dépenses',        labelEn: 'Expenses' },
-  { href: '/rapports',     Icon: FileText,        labelFr: 'Rapports',        labelEn: 'Reports' },
-  { href: '/parametres',   Icon: Settings,        labelFr: 'Paramètres',      labelEn: 'Settings' },
+  { href: '/dashboard',    Icon: LayoutDashboard, labelFr: 'Tableau de bord',  labelEn: 'Dashboard' },
+  { href: '/resume',       Icon: Activity,        labelFr: 'Résumé',           labelEn: 'Daily Summary' },
+  { href: '/accueil',      Icon: DoorOpen,        labelFr: 'Accueil immédiat', labelEn: 'Walk-in' },
+  { href: '/chambres',     Icon: BedDouble,       labelFr: 'Chambres',         labelEn: 'Rooms' },
+  { href: '/clients',      Icon: Users,           labelFr: 'Clients',          labelEn: 'Guests' },
+  { href: '/reservations', Icon: CalendarDays,    labelFr: 'Réservations',     labelEn: 'Reservations' },
+  { href: '/depenses',     Icon: Receipt,         labelFr: 'Dépenses',         labelEn: 'Expenses' },
+  { href: '/rapports',     Icon: FileText,        labelFr: 'Rapports',         labelEn: 'Reports' },
+  { href: '/parametres',   Icon: Settings,        labelFr: 'Paramètres',       labelEn: 'Settings' },
 ]
 
 interface Props { children: React.ReactNode }
