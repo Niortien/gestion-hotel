@@ -96,6 +96,7 @@ export interface Reservation {
   cancelledAt?: string
   source: BookingSource
   invoiceNumber?: string
+  isWalkIn?: boolean
 }
 
 export interface HotelUser {

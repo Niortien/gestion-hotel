@@ -63,6 +63,7 @@ export interface ApiReservation {
   status: ApiResStatus
   totalAmount: number | string
   currency: ApiCurrency
+  isWalkIn?: boolean
   services: ApiReservationService[]
   guest?: ApiGuest | null
   room?: ApiRoom | null
@@ -140,6 +141,7 @@ export interface CreateReservationDto {
   durationHours?: number
   totalAmount?: number
   currency?: ApiCurrency
+  isWalkIn?: boolean
   services?: { serviceId: string; quantity?: number }[]
 }
 export type UpdateReservationDto = Partial<CreateReservationDto>
@@ -173,7 +175,7 @@ export interface ReservationListParams {
   q?: string; status?: ApiResStatus; roomId?: number; guestId?: string
   checkInFrom?: string; checkInTo?: string
   checkOutFrom?: string; checkOutTo?: string
-  date?: 'today'; upcoming?: boolean; active?: boolean
+  date?: 'today'; upcoming?: boolean; active?: boolean; isWalkIn?: boolean
   minAmount?: number; maxAmount?: number
 }
 

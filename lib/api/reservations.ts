@@ -28,6 +28,7 @@ export async function createReservation(dto: {
   durationHours?: number
   totalAmount?: number
   currency?: string
+  isWalkIn?: boolean
   services?: { serviceId: string; quantity?: number }[]
 }): Promise<Reservation> {
   const body: CreateReservationDto = {
@@ -38,7 +39,8 @@ export async function createReservation(dto: {
     ...(dto.stayType      !== undefined ? { stayType:      dto.stayType as import('./types').ApiStayType }      : {}),
     ...(dto.durationHours !== undefined ? { durationHours: dto.durationHours }                                 : {}),
     totalAmount:  dto.totalAmount,
-    ...(dto.currency ? { currency: dto.currency as import('./types').ApiCurrency } : {}),
+    ...(dto.currency  ? { currency:  dto.currency  as import('./types').ApiCurrency } : {}),
+    ...(dto.isWalkIn !== undefined ? { isWalkIn: dto.isWalkIn } : {}),
     services:     dto.services,
   }
   const r = await apiFetch<ApiReservation>('/reservations', { method: 'POST', body: JSON.stringify(body) })

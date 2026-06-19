@@ -153,6 +153,7 @@ export function adaptReservation(r: ApiReservation): Reservation {
     notes:       '',
     createdAt:   r.createdAt ?? new Date().toISOString().slice(0, 10),
     source:      'direct',
+    isWalkIn:    r.isWalkIn ?? false,
   }
 }
 
